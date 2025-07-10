@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Listing- E-Learning Platform</title>
+  <!-- Ensure the path to styles.css is correct -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav>
+    <h1>E-Learning Platform</h1>
+    <ul id="nav-links">
+      <li><a href="index.html" id="login-link">Login</a></li>
+      <li><a href="course.html">Courses</a></li>
+      <li><a href="progress.html">Progress</a></li>
+      <li><a href="video.html">Video</a></li>
+      
+    </ul>
+  </nav>
+  <main>
+    <h1>Courses</h1>
+    <ul class="course-list">
+      <li class="course-item">
+      <a href="video.html#webdev" style="text-decoration: none; color: inherit;">
+        <img src="E-Learning images/Web-Development-2.jpg" alt="Web-Development.Icon">
+        <p>Web Development</p>
+        
+      </li>
+      <li class="course-item">
+      <a href="video.html#python" style="text-decoration: none; color: inherit;"></a>
+       <img src="E-Learning images/python.png" alt="python.Icon">
+        <p>Python Programming</p>
+        
+      </li>
+      <li class="course-item">
+      <a href="video.html#nodejs" style="text-decoration: none; color: inherit;"></a>
+        <img src="E-Learning images/node.js-1.jpg" alt="Node.js.Icon">
+        <p>NODE.js</p>
+        
+      </li>
+    </ul>
+  </main>
+  
+  <!-- Ensure the path to script.js is correct -->
+  <script>
+    // Redirect to login if not logged in
+    if (localStorage.getItem('loggedIn') !== 'true') {
+      window.location.href = 'index.html';
+    }
+  </script>
+  <!-------------logout functionality------->
+  <a href="#" onclick="logout()" style="position:absolute; bottom: 10px; left: 10px; color: red;"> Logout </a>
+  <script>
+    function logout() {
+      localStorage.removeItem('loggedIn');
+      window.location.href = 'index.html'; // Redirect to login page
+    }
+  </script>
+
+  <footer>
+  <p>&copy; 2025 E-Learning Platform.</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

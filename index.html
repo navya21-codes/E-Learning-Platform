@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - E-Learning Platform</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav >
+    <h1>E-Learning Platform</h1>
+    <ul id="nav-links">
+      <li><a href="index.html" id="login-link">Login</a></li>
+      <li class="nav-item" style="display:none;"><a href="course.html">Courses</a></li>
+      <li class="nav-item" style="display:none;"><a href="progress.html">Progress</a></li>
+      <li class="nav-item" style="display:none;"><a href="video.html">Video</a></li>
+      
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Login</h1>
+    <form class="login-form" id="loginForm">
+      <label for="email">Email:</label><br />
+      <input type="email" id="email" name="email" required><br /><br />
+
+      <label for="password">Password:</label><br />
+      <input type="password" id="password" name="password" required><br /><br />
+
+      <button type="submit">Login</button>
+    </form>
+  </main>
+<!------------login handler---------->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('loginForm');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault(); 
+        const email = document.querySelector('#email').value.trim();
+        const password = document.querySelector('#password').value.trim();
+
+
+        // Simulate login validation (you can add real check later)
+        if (email && password) {
+          localStorage.setItem('loggedIn', 'true');
+          window.location.href = 'course.html'; // redirect to courses page
+        } else {
+          alert("Please enter email and password.");
+        }
+      });
+    });
+</script>
+
+<footer>
+  <p>&copy; 2025 E-Learning Platform.</p>
+</footer>
+
+
+  <script src="script.js"></script>
+  </body>
+</html>

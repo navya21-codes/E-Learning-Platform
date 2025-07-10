@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Tracking - E-Learning</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav>
+    <h1>E-Learning Platform</h1>
+    <ul id="nav-links">
+      <li><a href="index.html" id="login-link">Login</a></li>
+      <li><a href="course.html">Courses</a></li>
+      <li><a href="progress.html">Progress</a></li>
+      <li><a href="video.html">Video</a></li>
+      
+    </ul>
+  </nav>
+  <main>
+    <h1>Progress Tracking</h1>
+    <div class="progress-bar">
+      <div id="progress" style="width: 0%;"></div>
+    </div>
+    <p>Progress: <span id="progress-text">0%</span></p>
+    <button onclick="updateProgress(25)">Update 25%</button>
+    <button onclick="updateProgress(75)">Update 50%</button>
+    <button onclick="updateProgress(100)">Update 100%</button>
+  </main>
+  
+  <script>
+  if (localStorage.getItem('loggedIn') !== 'true') {
+    window.location.href = 'index.html';
+  }
+</script>
+
+<script>
+  const webdevProgress = parseInt(localStorage.getItem("progress-webdev") || "0");
+  const pythonProgress = parseInt(localStorage.getItem("progress-python") || "0");
+  const nodejsProgress = parseInt(localStorage.getItem("progress-nodejs") || "0");
+
+  // Simple average for total progress
+  const total = Math.floor((webdevProgress + pythonProgress + nodejsProgress) / 3);
+
+  updateProgress(total);
+</script>
+
+<footer>
+  <p>&copy; 2025 E-Learning Platform.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>   
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video - E-Learning</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav>
+    <h1>E-Learning Platform</h1>
+    <ul id="nav-links">
+      <li><a href="index.html" id="login-link">Login</a></li>
+      <li><a href="course.html">Courses</a></li>
+      <li><a href="progress.html">Progress</a></li>
+      <li><a href="video.html">Video</a></li>
+      
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Video Lesson</h1>
+    <div class="video-container">
+    <!-- Web Development Video -->
+   <div class="video-box" id="webdev"> 
+    <h2>Web Development</h2>
+    <iframe width="350" height="200" src="https://www.youtube.com/embed/Q33KBiDriJY" frameborder="0" allowfullscreen></iframe>
+   </div> 
+    <!-- Python Programming Video -->
+   <div class="video-box" id="python"> 
+    <h2>Python Programming</h2>
+    <iframe width="350" height="200" src="https://www.youtube.com/embed/_uQrJ0TkZlc" frameborder="0" allowfullscreen></iframe>
+   </div> 
+    <!-- Node.js Video -->
+    <div class="video-box" id="nodejs">
+    <h2>Node.js</h2>
+    <iframe width="350" height="200" src="https://www.youtube.com/embed/TlB_eWDSMt4" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </main>
+
+  <!---------- Redirect if not logged in -------->
+  <script>
+    if (localStorage.getItem('loggedIn') !== 'true') {
+      window.location.href = 'index.html';
+    }
+  </script>
+
+  <!----------- YouTube Player API ------------>
+  <script src="https://www.youtube.com/iframe_api"></script>
+
+  <script>
+    let players = {}; // Store each player separately
+
+    function onYouTubeIframeAPIReady() {
+      players.webdev = new YT.Player('webdev-player', {
+        height: '200',
+        width: '350',
+        videoId: 'Q33KBiDriJY',
+        events: {
+          'onStateChange': (event) => handleVideoStateChange(event, 'webdev')
+        }
+      });
+
+      players.python = new YT.Player('python-player', {
+        height: '200',
+        width: '350',
+        videoId: '_uQrJ0TkZlc',
+        events: {
+          'onStateChange': (event) => handleVideoStateChange(event, 'python')
+        }
+      });
+
+      players.nodejs = new YT.Player('nodejs-player', {
+        height: '200',
+        width: '350',
+        videoId: 'TlB_eWDSMt4',
+        events: {
+          'onStateChange': (event) => handleVideoStateChange(event, 'nodejs')
+        }
+      });
+
+      // Track watch progress for all videos
+      setInterval(updateAllProgress, 2000); // every 2 seconds
+    }
+
+    // Handle when a video ends
+    function handleVideoStateChange(event, videoId) {
+      if (event.data === YT.PlayerState.ENDED) {
+        localStorage.setItem(`progress-${videoId}`, '100');
+        alert(`${videoId} video completed!`);
+      }
+    }
+
+    function updateAllProgress() {
+      for (const [key, player] of Object.entries(players)) {
+        if (player && player.getDuration) {
+          const duration = player.getDuration();
+          const currentTime = player.getCurrentTime();
+          if (duration > 0) {
+            const percent = Math.floor((currentTime / duration) * 100);
+            localStorage.setItem(`progress-${key}`, percent);
+          }
+        }
+      }
+    }
+  </script>
+  <footer>
+  <p>&copy; 2025 E-Learning Platform.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
