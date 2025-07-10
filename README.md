@@ -16,7 +16,7 @@ A simple and responsive E-Learning Platform that includes login authentication, 
 - JavaScript (Vanilla)
 
 ## Screenshot
-![Preview](screenshot.png)
+![Preview]https://raw.githubusercontent.com/navya21-codes/E-Learning-Platform/refs/heads/main/Screenshot.png
 
 ## Pages Included
 - `index.html` – Login page
